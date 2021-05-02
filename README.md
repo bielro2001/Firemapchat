@@ -1,126 +1,52 @@
-# Gatsby + Netlify CMS Starter
+[![Netlify Status](https://api.netlify.com/api/v1/badges/590c9edd-43ec-4e4a-bf83-25e57d4fa61b/deploy-status)](https://app.netlify.com/sites/react-firechat-alterclass/deploys)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b654c94e-08a6-4b79-b443-7837581b1d8d/deploy-status)](https://app.netlify.com/sites/gatsby-starter-netlify-cms-ci/deploys)
+# React FireChat
 
-**Note:** This starter uses [Gatsby v2](https://www.gatsbyjs.org/blog/2018-09-17-gatsby-v2/).
+Source code of the React FireChat app built with React, Firebase, and Tailwind
+CSS. Deployed on Netlify.
 
-This repo contains an example business website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org): **[Demo Link](https://gatsby-netlify-cms.netlify.com/)**.
+Watch the tutorial on how to build this app from scratch:
 
-It follows the [JAMstack architecture](https://jamstack.org) by using Git as a single source of truth, and [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
+[![Build a REALTIME CHAT APP in 5 MIN with React and Firebase](https://alterclass.s3.eu-west-3.amazonaws.com/build+a+chat+app+in+5+min+with+React+and+firebase.png)](https://www.youtube.com/watch?v=2-LISBTczQE)
 
-## Features
+Check out the live demo of the final result:
+[https://react-firechat-alterclass.netlify.app/](https://react-firechat-alterclass.netlify.app/).
 
-- A simple landing page with blog functionality built with Netlify CMS
-- Editable Pages: Landing, About, Product, Blog-Collection and Contact page with Netlify Form support
-- Create Blog posts from Netlify CMS
-- Tags: Separate page for posts under each tag
-- Basic directory organization
-- Uses Bulma for styling, but size is reduced by `purge-css-plugin`
-- Blazing fast loading times thanks to pre-rendered HTML and automatic chunk loading of JS files
-- Uses `gatsby-image` with Netlify-CMS preview support
-- Separate components for everything
-- Netlify deploy configuration
-- Netlify function support, see `lambda` folder
-- Perfect score on Lighthouse for SEO, Accessibility and Performance (wip:PWA)
-- ..and more
+[![React FireChat by AlterClass](https://alterclass.s3.eu-west-3.amazonaws.com/react-firechat.png)](https://react-car-configurator.netlify.app/)
 
-## Prerequisites
 
-- Node (I recommend using v8.2.0 or higher)
-- [Gatsby CLI](https://www.gatsbyjs.org/docs/)
-- [Netlify CLI](https://github.com/netlify/cli)
+## create-react-app
 
-## Getting Started (Recommended)
+This project uses the popular
+[create-react-app (CRA)](https://create-react-app.dev/) command to setup a
+modern React application. This way we can focus on the code itself, and not
+worry about configuring many build tools.
 
-Netlify CMS can run in any frontend web environment, but the quickest way to try it out is by running it on a pre-configured starter site with Netlify. The example here is the Kaldi coffee company template (adapted from [One Click Hugo CMS](https://github.com/netlify-templates/one-click-hugo-cms)). Use the button below to build and deploy your own copy of the repository:
+The
+[package.json](https://github.com/AlterClassIO/react-firechat/blob/master/package.json)
+file provides four scripts:
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/gatsby-starter-netlify-cms&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+- `start`: Runs the app in the development mode.
+- `build`: Builds the app for production to the build folder. It correctly
+  bundles React in production mode and optimizes the build for the best
+  performance.
+- `test`: Launches the test runner in the interactive watch mode.
+- `eject`: Remove create-react-app build dependency from your project.
 
-After clicking that button, you’ll authenticate with GitHub and choose a repository name. Netlify will then automatically create a repository in your GitHub account with a copy of the files from the template. Next, it will build and deploy the new site on Netlify, bringing you to the site dashboard when the build is complete. Next, you’ll need to set up Netlify’s Identity service to authorize users to log in to the CMS.
+## Instructions
 
-### Access Locally
+1. Clone the project repository:
+   `git clone https://github.com/AlterClassIO/react-firechat`
 
-Pulldown a local copy of the Github repository Netlify created for you, with the name you specified in the previous step
-```
-$ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
-$ cd [REPO_NAME]
-$ yarn
-$ netlify dev # or ntl dev
-```
+2. Navigate to the project folder: `cd react-firechat`
 
-This uses the new [Netlify Dev](https://www.netlify.com/products/dev/?utm_source=blog&utm_medium=netlifycms&utm_campaign=devex) CLI feature to serve any functions you have in the `lambda` folder.
+3. Install the dependencies: `npm install`
 
-To test the CMS locally, you'll need to run a production build of the site:
+4. Start the app in the development mode: `npm start`
 
-```
-$ npm run build
-$ netlify dev # or ntl dev
-```
+![Compiled successfully!](https://alterclass.s3.eu-west-3.amazonaws.com/react-firechat-compiled.png)
 
-### Media Libraries (installed, but optional)
+5. Open [http://localhost:3000](http://localhost:3000) to view your React
+   application in the browser
 
-Media Libraries have been included in this starter as a default. If you are not planning to use `Uploadcare` or `Cloudinary` in your project, you **can** remove them from module import and registration in `src/cms/cms.js`. Here is an example of the lines to comment or remove them your project.
-
-```javascript
-import CMS from 'netlify-cms-app'
-// import uploadcare from 'netlify-cms-media-library-uploadcare'
-// import cloudinary from 'netlify-cms-media-library-cloudinary'
-
-import AboutPagePreview from './preview-templates/AboutPagePreview'
-import BlogPostPreview from './preview-templates/BlogPostPreview'
-import ProductPagePreview from './preview-templates/ProductPagePreview'
-import IndexPagePreview from './preview-templates/IndexPagePreview'
-
-// CMS.registerMediaLibrary(uploadcare);
-// CMS.registerMediaLibrary(cloudinary);
-
-CMS.registerPreviewTemplate('index', IndexPagePreview)
-CMS.registerPreviewTemplate('about', AboutPagePreview)
-CMS.registerPreviewTemplate('products', ProductPagePreview)
-CMS.registerPreviewTemplate('blog', BlogPostPreview)
-```
-
-Note: Don't forget to also remove them from `package.json` and `yarn.lock` / `package-lock.json` using `yarn` or `npm`. During the build netlify-cms-app will bundle the media libraries as well, having them removed will save you build time.
-Example:
-```
-yarn remove netlify-cms-media-library-uploadcare
-```
-OR
-```
-yarn remove netlify-cms-media-library-cloudinary
-```
-## Getting Started (Without Netlify)
-
-```
-$ gatsby new [SITE_DIRECTORY_NAME] https://github.com/netlify-templates/gatsby-starter-netlify-cms/
-$ cd [SITE_DIRECTORY_NAME]
-$ npm run build
-$ npm run serve
-```
-
-### Setting up the CMS
-
-Follow the [Netlify CMS Quick Start Guide](https://www.netlifycms.org/docs/quick-start/#authentication) to set up authentication, and hosting.
-
-## Debugging
-
-Windows users might encounter `node-gyp` errors when trying to npm install.
-To resolve, make sure that you have both Python 2.7 and the Visual C++ build environment installed.
-
-```
-npm config set python python2.7
-npm install --global --production windows-build-tools
-```
-
-[Full details here](https://www.npmjs.com/package/node-gyp 'NPM node-gyp page')
-
-MacOS users might also encounter some errors, for more info check [node-gyp](https://github.com/nodejs/node-gyp). We recommend using the latest stable node version.
-
-## Purgecss
-
-This plugin uses [gatsby-plugin-purgecss](https://www.gatsbyjs.org/packages/gatsby-plugin-purgecss/) and [bulma](https://bulma.io/). The bulma builds are usually ~170K but reduced 90% by purgecss.
-
-# CONTRIBUTING
-
-Contributions are always welcome, no matter how large or small. Before contributing,
-please read the [code of conduct](CODE_OF_CONDUCT.md).
+![React starting point](https://alterclass.s3.eu-west-3.amazonaws.com/react-firechat.png)
